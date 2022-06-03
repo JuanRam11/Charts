@@ -1,19 +1,17 @@
-// variable to select from the canvas from the DOM
+// variable to select canvas tag from the DOM
 let charts = document.querySelectorAll('canvas');
 
+// Arr of types of charts
 const arrTypes = ['bar', 'line', 'radar', 'bubble', 'scatter'];
-const arrData = [];
-for (let j = 1; j <= 10; j++) {
-  arrData.push(Math.floor(Math.random() * 5));
-  console.log(arrData);
-}
 
+// Arr for types of data
+let arrData = [];
+
+// Function that renders the chart
 const renderChart = (i) => {
+  // create CTX variable and specify the getContext to 2d and also secuencialy change DOM charts
   const ctx = document.getElementById(`myChart${i}`).getContext('2d');
-
   const randomType = Math.floor(Math.random() * 5);
-  console.log(arrTypes[randomType]);
-  console.log(randomType);
   const myChart = new Chart(ctx, {
     type: arrTypes[randomType],
     data: {
@@ -53,5 +51,9 @@ const renderChart = (i) => {
 };
 
 for (let i = 1; i <= charts.length; i++) {
+  for (let j = 1; j <= 10; j++) {
+    arrData.push(Math.floor(Math.random() * 5));
+  }
   renderChart(i);
+  arrData = [];
 }
