@@ -1,16 +1,27 @@
+// variable to select from the canvas from the DOM
 let charts = document.querySelectorAll('canvas');
-console.log(charts.length);
 
-for (var i = 1; i <= charts.length; i++) {
+const arrTypes = ['bar', 'line', 'radar', 'bubble', 'scatter'];
+const arrData = [];
+for (let j = 1; j <= 10; j++) {
+  arrData.push(Math.floor(Math.random() * 5));
+  console.log(arrData);
+}
+
+const renderChart = (i) => {
   const ctx = document.getElementById(`myChart${i}`).getContext('2d');
+
+  const randomType = Math.floor(Math.random() * 5);
+  console.log(arrTypes[randomType]);
+  console.log(randomType);
   const myChart = new Chart(ctx, {
-    type: 'bar',
+    type: arrTypes[randomType],
     data: {
       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [
         {
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          data: arrData,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -39,4 +50,8 @@ for (var i = 1; i <= charts.length; i++) {
       },
     },
   });
+};
+
+for (let i = 1; i <= charts.length; i++) {
+  renderChart(i);
 }
