@@ -2,16 +2,25 @@
 let charts = document.querySelectorAll('canvas');
 
 // Arr of types of charts
-const arrTypes = ['bar', 'line', 'radar', 'bubble', 'scatter'];
+//'scatter', type of chart that works differently
+const arrTypes = [
+  'bar',
+  'line',
+  'radar',
+  'bubble',
+  'doughnut',
+  'pie',
+  'polarArea',
+];
 
 // Arr for types of data
 let arrData = [];
 
 // Function that renders the chart
 const renderChart = (i) => {
-  // create CTX variable and specify the getContext to 2d and also secuencialy change DOM charts
+  // create CTX variable and specify the getContext to 2d and also sequentially change DOM charts
   const ctx = document.getElementById(`myChart${i}`).getContext('2d');
-  const randomType = Math.floor(Math.random() * 5);
+  const randomType = Math.floor(Math.random() * 7);
   const myChart = new Chart(ctx, {
     type: arrTypes[randomType],
     data: {
